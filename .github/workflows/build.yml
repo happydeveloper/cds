@@ -1,0 +1,96 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        # 리포지토리를 체크아웃합니다.
+
+      - name: Set up GCC
+        run: sudo apt-get install -y g++
+        # GCC를 설치합니다.
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Compile project
+        run: |
+          make
+          cp *.out build/
+        # Linux 빌드
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-build
+          path: build/
+        # 빌드 아티팩트를 업로드합니다.
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        # 리포지토리를 체크아웃합니다.
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Compile project
+        run: |
+          make
+          cp *.out build/
+        # macOS 빌드
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-build
+          path: build/
+        # 빌드 아티팩트를 업로드합니다.
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        # 리포지토리를 체크아웃합니다.
+
+      - name: Set up MSYS2
+        run: |
+          choco install -y msys2
+          refreshenv
+          C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm"
+          C:\msys64\usr\bin\bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc"
+        # MSYS2를 설치하고 필요한 패키지를 설치합니다.
+
+      - name: Add MSYS2 to PATH
+        shell: bash
+        run: echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
+        # MSYS2를 PATH에 추가합니다.
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Build with Makefile
+        run: |
+          make
+          cp *.exe build/
+        # Windows 빌드
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: build/
+        # 빌드 아티팩트를 업로드합니다.

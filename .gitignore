@@ -1,0 +1,20 @@
+# 컴파일된 실행 파일
+main
+
+# 빌드 중 생성된 파일
+*.o
+*.out
+*.exe
+
+# MacOS 시스템 파일
+.DS_Store
+
+# 컴파일러 관련 파일
+*.dSYM/
+*.log
+
+# Vim, Emacs, VSCode 등 편집기 관련 파일
+*.swp
+*.swo
+.vscode/
+.idea/
