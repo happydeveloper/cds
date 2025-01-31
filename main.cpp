@@ -20,6 +20,9 @@ int main() {
     array.insert(2);
     array.insert(3);
     // 배열의 모든 요소를 화면에 출력
+
+    array.remove(2);
+    
     array.display();
     
     return 0;
