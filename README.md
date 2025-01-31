@@ -18,3 +18,9 @@ make
 ```
 make clean
 ```
+
+## Array 클래스 메서드 추가
+- insert(int value) : 배열에 요소 추가
+- remove(int value) : 배열에서 요소 삭제
+- display() : 배열 요소 출력
+
