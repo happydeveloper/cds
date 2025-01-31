@@ -30,7 +30,7 @@ jobs:
         # Linux 빌드
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-build
           path: build/
@@ -53,7 +53,7 @@ jobs:
         # macOS 빌드
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-build
           path: build/
@@ -89,7 +89,7 @@ jobs:
         # Windows 빌드
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: build/
