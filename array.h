@@ -42,6 +42,11 @@ class Array {
             }
             std::cout << std::endl;
         }
+
+        // 배열의 크기를 반환하는 함수
+        int getSize() const {
+            return size;
+        }
 };
 
 #endif
