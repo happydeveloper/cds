@@ -29,6 +29,8 @@ int main() {
     doubleArray.insert(1.1);
     doubleArray.insert(2.2);
     doubleArray.insert(3.3);
+    doubleArray.insert(4.4);
+    doubleArray.remove(2);
     doubleArray.display();
     
     return 0;
